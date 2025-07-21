@@ -1,0 +1,43 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Network/publicIPAddresses"
+        },
+        {
+          "not": {
+            "field": "Microsoft.Network/publicIPAddresses/ipTags[*]",
+            "exists": true
+          }
+        }
+      ]
+    },
+    "then": {
+      "effect": "append",
+      "details": [
+        {
+          "field": "Microsoft.Network/publicIPAddresses/ipTags",
+          "value": "[parameters('requiredIpTags')]"
+        }
+      ]
+    }
+  },
+  "parameters": {
+    "requiredIpTags": {
+      "type": "Array",
+      "metadata": {
+        "displayName": "Required IpTags",
+        "description": "descriptionThe required IpTags to be applied to all public IP addresses."
+      },
+      "defaultValue": [
+        {
+          "ipTagType": "FirstPartyUsage",
+          "tag": "/NonProd"
+        }
+      ]
+    }
+  }
+}
