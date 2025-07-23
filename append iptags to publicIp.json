@@ -30,7 +30,7 @@
       "type": "Array",
       "metadata": {
         "displayName": "Required IpTags",
-        "description": "descriptionThe required IpTags to be applied to all public IP addresses."
+        "description": "The required IpTags to be applied to all public IP addresses."
       },
       "defaultValue": [
         {
